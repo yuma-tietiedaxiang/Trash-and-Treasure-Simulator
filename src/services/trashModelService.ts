@@ -30,13 +30,11 @@ export class TrashModelService {
       console.log("Starting to load trash recognition model...");
 
       // Load model from public directory
-      const modelUrl = "/trash-categorise-model/model.json";
+      const modelUrl = "/model.json";
       this.model = await tf.loadLayersModel(modelUrl);
 
       // Get label information from metadata.json
-      const metadataResponse = await fetch(
-        "/trash-categorise-model/metadata.json"
-      );
+      const metadataResponse = await fetch("/metadata.json");
       const metadata = await metadataResponse.json();
       this.labels = metadata.labels || [];
 
